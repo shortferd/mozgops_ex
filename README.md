@@ -155,8 +155,21 @@ for production you can set them up using Linux env variables:
 IP_ADDRESS={your_ip} PORT={your_port} path_to_release/bin/mozgops_ex start
 ```
 
+### Use in docker container
+To try application in docker container, from project directory run the following to build an image:
+```bash
+docker build -t mozgops .
+``` 
+After image is build run the following commands to launch the container:
+```bash
+## Launch the container
+docker run -d -e IP_ADDRESS={your_ip} -e PORT={your_port} -p {your_port}:{your_port} --name mz_server mozgops
+## Verify that container is running
+docker ps
+```
+If you don't desire to specify IP_ADDRESS or PORT then look to [configuration](#configuration) section to find default values for -p flag.
+
 ## Future plans
 
-1. For easier deployment and use it's good to add Docker containerization pipeline. 
-2. Current implementation heavily relies on "required" key. Maybe custom LLM using [Bumblebee](https://github.com/elixir-nx/bumblebee) would be good improvement.
-3. Maybe upgrade to full-scale Phoenix app with GUI.  
+1. Current implementation heavily relies on "required" key. Maybe custom LLM using [Bumblebee](https://github.com/elixir-nx/bumblebee) would be good improvement.
+2. Maybe upgrade to full-scale Phoenix app with GUI.  
